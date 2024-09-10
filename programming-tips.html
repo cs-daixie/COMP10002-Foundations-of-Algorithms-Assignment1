@@ -1,0 +1,527 @@
+<html><head><title>Programming Is Fun!</title>
+</head><body>
+
+<h2>C Programming Assignment Tips and Advice</h2>
+<h4>
+Last updated:
+April 6, 2024
+<p>
+</h4>
+
+<ol>
+
+<p><li><i>Asking questions:</i>
+If you have questions about the assignment:</p>
+<ul>
+<li>Read the remainder of this page, and see if they are answered here.
+</li>
+
+<li>Check the Ed Discussion page in the LMS to see if your question
+has already been answered;
+</li>
+
+<li>If not, ask it in the appropriate Ed thread, and then wait a few
+hours (and less than a day) for an answer (mark your post "Private"
+if you are including screenshots or code fragments, but otherwise
+leave it public, so that others can see the answer; conversely, I
+will change to "Public" any threads that do not need to be private,
+for the same reason);
+</li>
+
+<li>Ask your tutor during your scheduled workshop;
+</li>
+
+<li>Catch me after one of the scheduled lectures;
+</li>
+
+<li>(Last resort, and I'd much rather you used the Assignment
+1 Discussion and asked questions there...)
+<br>Email <tt>ammoffat@unimelb.edu.au</tt> with a screenshot that
+illustrates the problem, and at the same time submit your current
+program to Gradescope (linked at the bottom of the Assignment 1 page
+in the LMS) so I can see it there and run it if I want to.
+</li>
+</ul>
+
+<p>Requests for extensions and/or special consideration should be
+accompanied by documentation, and emailed directly to me using
+<tt>ammoffat@unimelb.edu.au</tt>.
+</p>
+
+<p><li><i>Magic numbers -- What are the rules?</i></p>
+
+<ul>
+<li>Where a number is totally self-defining, I'm happy for it to be
+used any number of times without a hash-define, provided the code is
+commented each time and/or explicitly sensible variable names are
+used in the same context.
+For example, in
+<pre>
+	/* compute percentage */
+	pcent = 100.0*count/totcount;
+</pre>
+I wouldn't expect the <tt>100.0</tt> to have been hash-defined, since
+the comment explains its role, and it isn't going to
+change, even if other percentages are calculated elsewhere in the program.
+And in any case, what would its name be?
+calling it <tt>ONE_HUNDRED</tt> doesn't help.
+And calling it <tt>PCENT_CONVERTER</tt> is only a little better.
+By and large, if you can't give a appropriate non-numeric name for a
+constant, then there is probably little sense
+in trying to <tt>#define</tt> it.
+</li>
+
+<li>
+The guidance in the previous item in regard to fundamental numbers
+also allows 0 and 1, of course, unless they represent something other
+than the additive and multiplicative identities, in which case they
+should be hash-defined.
+So <tt>n += 1</tt> is always ok, don't think you are being clever by
+doing <tt>n += ONE</tt>, you are not, and will lose marks.
+(But if the current step is <tt>1</tt>, and in the future you can see
+that the step on <tt>n</tt> might be two, then of course you should
+<tt>#define STEP 1</tt> and use <tt>n += STEP</tt>.
+</li>
+
+<li>
+The rule about self-evident numbers also allows <tt>while
+(scanf("%lf%lf", &amp;x, &amp;y)==2)</tt>, since the <tt>2</tt> is
+immediately obvious from the adjacent context (two variables to be
+read).
+</li>
+
+<li>Where a constant is one that is a fact that is in no way ever
+going to be varied, then provided it only appears once in the program
+and is explained with a comment, then it need not be hash-defined.
+An example here is the <tt>-32.0</tt> in the temperature conversion
+computation, assuming that it is entirely within a function called
+<tt>cels2fahr()</tt> or etc and that it isn't used in other
+places scattered through the program.
+</li>
+
+<li>But anything of this type that appears even twice should be
+hash-defined.
+So if you have <tt>cels2fahr()</tt> and <tt>fahr2cels()</tt>, I'd
+expect to see <tt>#define TEMP_CONST1 (-32.0)</tt> and <tt>#define
+TEMP_CONST2 (5.0/9.0)</tt> once in a program, even if all occurrences
+are in a single function, it should be hash-defined.
+(And, as a warning, note the use of parentheses here, to make sure
+that when the definitions get expanded, the rules of precedence don't
+then cause a mishap.)
+</li>
+
+<li>Where a constant is one that is clearly an artifact of the
+problem description or the program that implements the solution (for
+example, numbers like <tt>NUM_ELEMS</tt>, the declared size of an
+array and the maximum number of items that can be put into it), then
+they must be hash-defined, even if only used once or twice in the
+program.
+</li>
+</ul>
+
+<p>Make sense?
+</p>
+
+<p><li><i>Reuse of code -- What are the rules?</i>
+It is just like writing an essay in English or History.
+It is ok to quote a passage or a sentence from someone else to help
+you make a point or show the way that someone else thought through an
+issue, provided that you make it quite clear that it is a quote (in
+an essay, by using "quotation marks", and in a program, by adding a
+comment to that bit of code), and give a reference as to where it
+came from.
+</p>
+
+<p>That is, you can reflect on and agree with someone else's work by
+incorporating it into your own but you mustn't try and take someone
+else's work and pretend (by not quoting it, or not giving the
+reference to the source) it is your own.
+</p>
+
+<p>In both essays and programming assignments there is also a typical
+expectation of there being a non-trivial amount of your own input
+required, regardless of whether you have correctly attributed.
+If an entire essay was one long quote from somewhere, it wouldn't be
+ok, would it?
+We wouldn't know what mark to give you, because there would be no
+evidence of your own mastery of the content, and your own ability to
+make it work together as a single entity.
+Likewise, if the entire essay consisted of a jigsaw of quotes, it
+wouldn't be ok, even if every single one of those quotes
+was correctly attributed.
+</p>
+
+<p>Well, same with your program.
+It is ok to use some fragments of code (one simple function at time)
+if properly attributed.
+But it is <b>not</b> ok to get every function from somewhere, nor to
+take the whole program from somewhere, <i>even if everything you have
+used is properly attributed and quoted</i>.
+The great bulk of the "creativity" <b>must be from you</b>.
+</p>
+
+<p>You may also reuse any functions that you yourself have written as
+part of earlier activities or assessments, but should similarly
+annotate it with a comment that indicates what the original purpose
+was, and when you wrote it -- just as if in one essay you decided to
+quote something that you had written in a prior essay.
+And again, it should be a minor component, not a majority of the
+new assessment.
+</p>
+
+<p>When you do reuse code, add a comment at the front to say where you
+got it from (a URL or a document, and the date), and what
+modifications you made to it to suit your purposes.
+For example:
+<pre>
+    /* This function adapted from insertionsort() provided as
+       Figure 7.3 on page 104 of the subject textbook,
+       written by Alistair Moffat, and accessed via
+       https://people.eng.unimelb.edu.au/ammoffat/ppsaa/c/
+       10 April 2021.
+       Altered to sort doubles rather than integers
+    */
+</pre>
+</p>
+
+<p><li><i>Functions -- What are the rules?</i>
+A function can be as short as one line, and might only be called from
+a single spot in the program.
+It becomes a function because it does a distinguishable task of some
+sort.
+</p>
+
+<p>At the other end of the scale, functions shouldn't be longer than
+around one editor screen, because it's useful to be able to see the
+whole body of a function at once and comprehend what it does.
+For most purposes that's around 60 lines of code, including the
+comments and blank lines that break apart the main processing phases
+it contains.
+Nor should any function contain deeply nested loops and if statements
+except over very brief spans-- two or three levels deep is normally
+about as complex as you can hold in your head while thinking about
+what the function does.
+Beyond that it makes sense to make the body of an inner loop or
+nested if-statement into its own function, and just call it.
+The reduces the level of indenting required, shortens the function by
+breaking it into two (or more) parts, and also helps you develop
+useful decomposition and abstractions.
+</p>
+
+<p>Functions should have descriptive names, so that the code that
+they are called from can be sensibly read without needing to
+immediately go and read the function itself.
+</p>
+
+
+
+<p><li><i>Debugging</i>:
+Try putting this at the top of your program:
+<pre>
+    #define DEBUG 1
+    #if DEBUG
+    #define DUMP_DBL(x) printf("line %d: %s = %.5f\n", __LINE__, #x, x)
+    #else
+    #define DUMP_DBL(x)
+    #endif
+</pre>
+and then, later in your code, where you have a <tt>double</tt> variable
+(say) <tt>score</tt>, try
+<pre>
+    DUMP_DBL(score);
+</pre>
+Then change <tt>DEBUG</tt> to <tt>0</tt> at the top of the program,
+compile it again, and then run it again.
+Get it?
+</p>
+
+<p>You can then add <tt>DUMP_INT</tt> and <tt>DUMP_STR</tt>, and get the
+extra output turned on whenever you need it to understand what your
+program is doing.
+Then turn it all off again with one simple edit.
+Provided <tt>DEBUG</tt> to <tt>0</tt> when you submit your program,
+you may leave all of the debugging statements in place.
+</p>
+
+
+<p><li><i>Grok versus gcc:</i>
+You can develop your program in Grok if that is your preference, and
+a project is provided for you that includes the skeleton code and all
+of the example test files.
+You can then run your from the command-line that is provided via the
+"Terminal" button.
+</p>
+
+<p>But <i>you cannot submit from within</i>
+Grok<i>, and will need to copy your program each time you
+wish to submit it to Gradescope</i>.
+(To copy your program out of Grok, click on the little "&gt;" sign to
+the right of the filename, to expose a "Download" button.)
+That requirement, and the greater flexibility afforded when developing on your own machine,
+might mean that now is a good time to take the leap, and leave the "friendly"
+environment of Grok.
+</p>
+
+<p>If you are developing your assignment on your own computer, be
+sure that you have a suitable backup routine in place.
+For example, copy your program to your Dropbox folder after each day
+of development, or copy it to a thumbdrive.
+</p>
+
+
+<p><li><i>Checking your output</i>:
+The program <tt>diff</tt> is available on Unix machines and in most PC
+shells, and within the Terminal shell provided by Grok.
+If <tt>output.txt</tt> contains the actual output of your program,
+and
+<tt>test1-out.txt</tt> contains the correct output, use the command:
+<pre>
+    diff test1-out.txt output.txt
+</pre>
+to see a list of lines where the two files differ from each
+other.
+Lines that start with a <tt>&lt;</tt> are from the first argument
+file, lines that start with <tt>&gt;</tt> are from the second
+argument file.
+You can also pipe the output of your program directly into <tt>diff</tt>:
+<pre>
+    ./myass1 < test1.txt | diff - test1-out.txt
+</pre>
+where the "<tt>-</tt>" indicates "use standard input".
+If there are no differences, <tt>diff</tt> will remain silent.
+And if you stare and stare and can't see any differences but
+<tt>diff</tt> says every line is different, go on and read the next
+tip as well, because it might be that you have newline problems --
+your program is generating one type of newline, but the reference
+output file that you are using has the other type in it.
+
+
+<p><li><i>Trouble with newline characters:</i>
+<!--
+[<i>It shouldn't be necessary for you to pay any attention to this
+detail about newlines during comp20005 assignment 1 in 2024, because
+the specification does not require any detailed
+character-by-character input processing.</i>]
+-->
+Text files that are
+created on a PC, or copied to a PC, edited and then saved again on
+the PC, may end up with PC-format two-character
+(<tt>CR</tt>+<tt>LF</tt>) newline sequence, see the
+<a href="https://en.wikipedia.org/wiki/Newline" target="_blank">Wiki
+page</a> for details.
+</p>
+
+<p>If you have compiled your program on a PC, and it receives a
+<tt>CR</tt>+<tt>LF</tt> sequence, then <tt>getchar()</tt> will
+consume them both, and hand a single-character <tt>'\n'</tt>
+newline to your program.
+So in that sense, everything works as expected.
+Likewise, on a PC when you write a
+<tt>'\n'</tt> to <tt>stdout</tt>, a <tt>CR</tt>+<tt>LF</tt> pair will
+be placed in to the output file (or passed through the pipe to the
+next program in the chain).
+</p>
+
+<p>The problems arise when you copy your program and a PC-format test
+file to a Unix system and then try compiling and executing your
+program there, or vice-versa.
+Now the
+<tt>CR</tt> characters that are embedded in the test file that you
+copied over get in the way and arrive via <tt>getchar()</tt> into
+your program as stand-alone <tt>'\r'</tt> characters.
+</p>
+
+<p>One way to defend against these confusions is to write your
+program so that it looks at every character that it reads, and if it
+ever sees a
+<tt>CR</tt> come through, it throws it away.
+That way, if you do accidentally get <tt>CR</tt> characters in your
+test files on the Unix server (or on your Mac) your program won't be
+disrupted by them.
+Here is a function that you should use to do this:
+<pre>
+	int
+	mygetchar() {
+	    int c;
+	    while ((c=getchar())=='\r') {
+	    	/* empty body */
+	    }
+	    return c;
+	}
+</pre>
+Then call <tt>mygetchar()</tt> whenever you would ordinarily
+call <tt>getchar()</tt>, on both PC and Mac.
+</p>
+
+
+<!--
+<p>Because most of you work on PCs (including in the labs), the test
+files that are provided have been created <b>with</b> the PC-style
+<tt>CR</tt>+<tt>LF</tt> newlines, and should work correctly when
+copied (use right-click->"Save as") to a PC.
+With <tt>mygetchar()</tt> they can also be used on a Mac, but won't
+interact sensibly using the standard <tt>getchar()</tt>
+function.
+</p>
+
+<p>To be consistent, the final post-submission testing will also be done
+using PC-style input files but will be executed <b>on a Unix
+machine</b>, meaning that
+<b>all</b> submitted programs will need
+to make use of <tt>mygetchar()</tt>.
+</p>
+-->
+
+<p>Most editors (somewhere in their options) also allow selection
+of PC versus Unix newlines in files that they write.
+</p>
+
+<p>Note also that many editors (including Grok) don't automatically
+add a newline after the last line of text files, you need to put it
+there explicitly yourself (just press enter one more time, so that
+the next line number shows, with an empty line there).
+Watch out for this problem if you are creating your own test files on
+Mac or PC.
+</p>
+
+<p>If in any doubt, use <tt>od -a &lt;file&gt;</tt> in a Unix shell
+(including in the Terminal shell within Grok, and in MinGW) to
+look at the byte-by-byte contents of a file, and check which format
+is being used, and whether there is a final newline character (or final
+<tt>CR</tt>+<tt>LF</tt> pair).
+You can do this on a PC by starting the MinGW shell and then using
+<tt>cd</tt> to reach the right directory.
+There is an <tt>od</tt> version available within the MinGW shell.
+(On a Mac, <tt>Terminal</tt> is a Unix shell.)
+</p>
+
+
+<p><li><i>Trouble with tabs:</i>
+The default in some editors is for tabs to be aligned every 8
+character positions, but other editors default to 4 positions.
+<i>When you submit to Gradescope tabs will get "expanded" to be 8
+characters.</i>
+It is important that you are aware that the default for tabs is that
+they are aligned every 8 character positions.
+Find the preferences for your editor, and set the tab indent to 8 to
+ensure that you don't get a deduction applied for lines greater than
+80 characters long.
+</p>
+
+<p>In Grok the situation is more complicated.
+If you type a "tab" character, Grok expands it to (by default, four)
+blanks, and the tab that you typed never gets saved to your program
+file.
+So in Grok you can use "tabs" of four if you wish to, because after
+you download your program and submit it to Gradescope, it will see
+four blanks and no tabs at all.
+You can also set Grok so that when you type a tab character it
+replaces it by 8 blank characters.
+Your choice.
+</p>
+
+<p>I'll say it again: when the programs get executed within
+Gradescope, any tabs in your submission will get expanded to
+<b>eight</b> characters.
+So if you want 4-character indentations, type four blanks (using the
+space bar) or eight blanks or 12 blanks and so on, but don't type
+tab.
+</p>
+
+<p>
+There are <i>no</i> tabs anywhere in the sample output files.
+
+<!--
+<p><li><i>Example program:</i>
+Here is a <a href="./ass1-soln-2020.c" target="_blank">sample solution
+to comp20005 2020 Assignment 1</a>, so that you can see the style of
+programming/commenting that is expected of you.
+You don't need to know what the program was expected to do in order
+to browse through and get a feel for how it is constructed.
+(You might also see some useful components that you might like to --
+with suitable attribution, of course -- adopt.)
+-->
+
+<p><li><i>Read the warning messages!!</i>
+You need to <b>look at, think about, and act on</b> the diagnostic
+messages produced by Grok, gcc on your own
+computer, or by Gradescope when you are submitting.
+Ignoring them, and looking only at the output, is like texting while
+driving -- really risky behavior that will eventually result in a
+tragedy.
+<i>Don't leave Gradescope submission to the last minute.
+It might show up different warning messages, or even different program
+bugs.
+You can submit there as many times as you like prior to the
+deadline.</i>
+</p>
+
+<p>Be warned: mark deductions may be applied for warnings that appear
+when your program is compiled and executed by Gradescope
+following submission, even if your program produces the correct
+output.
+</p>
+
+<p>Indeed, ignoring compiler warning messages is like ignoring
+someone who shouts out "<i>Look out for the bus!</i>".
+It might be an indication that if you are not careful you will get
+run over.
+</p>
+
+<p><li><i>Know where the marks are:</i>
+Make sure you work right through the marking rubric linked from
+the LMS page, so that you know what deductions will apply.
+Read it once at the beginning of your coding adventure, do it again in
+the middle, and then read it right through again before you make your
+final submission and say "done"!
+</p> 
+
+<!--
+<p>On <tt>dimefox</tt> you may also get messages like
+<tt>warning: Assigned value is garbage or undefined</tt> showing up,
+as a result of the static analysis check being done using a tool
+called <tt>clang</tt>.
+If you want to make them go away (and I am sure you do, lest you get
+them confused with other messages that you should pay attention to,
+and lest you not want to suffer the rubric deduction for "unnecessary
+warning messages in compilation"), assign zero to all values and
+arrays at the point you declare them.
+</p>
+-->
+
+<!--
+<p>You can run this check yourself on a mac by typing <tt>clang
+--analyze program.c</tt>.
+That command also works in the "Terminal" shell available in
+Grok.
+</p>
+-->
+
+<p><li><i>Make sure you have all the output:</i>
+When a program fails with a "Segmentation Fault" or similar, partial
+output buffers might remain unwritten, meaning that you are not
+seeing all of the output that has been generated.
+</p>
+
+<p>To make sure that you are looking at all of the output when you
+are debugging, add
+<tt>fflush(stdout);</tt> function calls at critical points, to force
+everything that you have written to <tt>stdout</tt> using
+<tt>printf()</tt> to be flushed through into the output.
+This is especially important when debugging problems that only arise
+within the Gradescope environment.
+</p>
+
+<p><li><i>Don't forget to certify Academic Honesty:</i> There will be
+zero tolerance on this.
+If you don't "sign" it, or don't include it, there will be a
+significant mark deduction.
+(See the marking rubric linked from the Assignment page in the LMS.)
+</p>
+</ol>
+
+<br>
+<i>Prepared by Alistair Moffat, ammoffat@unimelb.edu.au, 
+for use in comp10002 and comp20005</i>.
+</body>
+</html>

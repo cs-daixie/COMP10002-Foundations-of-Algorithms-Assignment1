@@ -1,0 +1,77 @@
+Stage 1
+input tsv data has 33 rows and 5 columns
+row 33 is:
+   1: Year       2024
+   2: Event      Table tennis
+   3: Gender     Mixed
+   4: Country    Malaysia
+   5: Medal      third: bronze
+
+Stage 2
+sorting by "Year",
+   then by "Country",
+   then by "Event"
+row 1 is:
+   1: Year       2016
+   2: Event      Cycling
+   3: Gender     Womens
+   4: Country    Australia
+   5: Medal      second: silver
+row 17 is:
+   1: Year       2024
+   2: Event      Diving
+   3: Gender     Mens
+   4: Country    China
+   5: Medal      first: gold
+row 33 is:
+   1: Year       2024
+   2: Event      Swimming
+   3: Gender     Womens
+   4: Country    New Zealand
+   5: Medal      first: gold
+
+Stage 3
+--------------------------
+Year
+    Country
+        Event        Count
+--------------------------
+2016
+    Australia
+        Cycling          2
+    Malaysia
+        Cycling          1
+2020
+    China
+        Swimming         1
+        Table tennis     1
+    Indonesia
+        Swimming         2
+        Table tennis     1
+    Malaysia
+        Swimming         1
+    New Zealand
+        Swimming         2
+        Table tennis     1
+2024
+    Australia
+        Cycling          1
+        Diving           1
+        Swimming         1
+    China
+        Cycling          1
+        Diving           4
+        Swimming         2
+        Table tennis     1
+    Indonesia
+        Diving           1
+        Swimming         1
+        Table tennis     1
+    Malaysia
+        Cycling          1
+        Table tennis     1
+    New Zealand
+        Cycling          3
+        Swimming         2
+--------------------------
+ta daa!

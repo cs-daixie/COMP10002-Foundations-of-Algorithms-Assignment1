@@ -1,0 +1,46 @@
+Stage 1
+input tsv data has 6 rows and 5 columns
+row 6 is:
+   1: Year       2024
+   2: Event      Cycling
+   3: Gender     Womens
+   4: Country    New Zealand
+   5: Medal      third: bronze
+
+Stage 2
+sorting by "Country",
+   then by "Event"
+row 1 is:
+   1: Year       2024
+   2: Event      Cycling
+   3: Gender     Womens
+   4: Country    China
+   5: Medal      first: gold
+row 3 is:
+   1: Year       2024
+   2: Event      Swimming
+   3: Gender     Womens
+   4: Country    Indonesia
+   5: Medal      third: bronze
+row 6 is:
+   1: Year       2024
+   2: Event      Swimming
+   3: Gender     Womens
+   4: Country    New Zealand
+   5: Medal      first: gold
+
+Stage 3
+------------------
+Country
+    Event    Count
+------------------
+China
+    Cycling      1
+    Swimming     1
+Indonesia
+    Swimming     1
+New Zealand
+    Cycling      2
+    Swimming     1
+------------------
+ta daa!
